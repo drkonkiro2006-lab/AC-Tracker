@@ -6,6 +6,10 @@ from datetime import datetime
 app = Flask(__name__)
 DB_FILE = 'data.db'
 
+# Vercel-safe SQLite path + auto init
+if os.environ.get("VERCEL"):
+    DB_FILE = "/tmp/data.db"
+
 # ==========================================
 # 0. CONFIGURATION
 # ==========================================
@@ -56,6 +60,10 @@ def init_db():
     
     conn.commit()
     conn.close()
+
+# Initialize DB on import so Vercel can use it
+if not os.path.exists(DB_FILE):
+    init_db()
 
 # ==========================================
 # 2. MAIN APP HTML/CSS/JS (Tracker UI)
@@ -647,6 +655,4 @@ def analytics_data():
 # 5. RUN SCRIPT
 # ==========================================
 if __name__ == '__main__':
-    if not os.path.exists(DB_FILE):
-        init_db()
-    app.run( port=5000)
+    app.run()
