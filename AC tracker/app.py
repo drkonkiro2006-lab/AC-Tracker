@@ -82,6 +82,10 @@ MAIN_TEMPLATE = '''
         .user-card { transition: transform 0.2s, box-shadow 0.2s; }
         .user-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
     </style>
+    <script type="module">
+        import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1/dist/index.mjs';
+        injectSpeedInsights();
+    </script>
 </head>
 <body class="font-sans antialiased text-gray-800 pb-12">
     
@@ -276,6 +280,10 @@ DASHBOARD_TEMPLATE = '''
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style> body { background-color: #f8fafc; } </style>
+    <script type="module">
+        import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1/dist/index.mjs';
+        injectSpeedInsights();
+    </script>
 </head>
 <body class="font-sans antialiased text-gray-800 pb-12">
     
